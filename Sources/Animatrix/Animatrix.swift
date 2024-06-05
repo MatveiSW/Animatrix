@@ -36,6 +36,16 @@ public struct Animatrix {
             gradientEffect(view: view)
         case .scalingAnimation:
             scalingAnimation(view: view)
+        case .circleMotionAnimation:
+            circleMotionAnimation(view: view)
+        case .waveAnimation:
+            waveAnimation(view: view)
+        case .shapeChangeAnimation:
+            shapeChangeAnimation(view: view)
+        case .pathMotionAnimation:
+            pathMotionAnimation(view: view)
+        case .noiseFlickerAnimation:
+            noiseFlickerAnimation(view: view)
         }
     }
 }

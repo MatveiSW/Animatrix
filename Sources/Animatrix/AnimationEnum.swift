@@ -23,4 +23,9 @@ public enum Animation {
     case plasma
     case gradientEffect
     case scalingAnimation
+    case circleMotionAnimation
+    case waveAnimation
+    case shapeChangeAnimation
+    case pathMotionAnimation
+    case noiseFlickerAnimation
 }

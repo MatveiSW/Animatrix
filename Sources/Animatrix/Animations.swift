@@ -186,5 +186,61 @@ func scalingAnimation(view: UIView) {
     view.layer.add(animation, forKey: "scalingAnimation")
 }
 
+func circleMotionAnimation(view: UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "position")
+    let path = UIBezierPath(arcCenter: view.superview!.center, radius: 100, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+    animation.path = path.cgPath
+    animation.duration = 2.0
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "circleMotionAnimation")
+}
+
+func waveAnimation(view: UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "transform.translation.y")
+    animation.values = [0, -20, 0]
+    animation.keyTimes = [0, 0.5, 1]
+    animation.duration = 0.5
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "waveAnimation")
+}
+
+func shapeChangeAnimation(view: UIView) {
+    let animation = CABasicAnimation(keyPath: "cornerRadius")
+    animation.fromValue = view.layer.cornerRadius
+    animation.toValue = view.bounds.width / 2 // Пример: изменение на круглую форму
+    animation.duration = 1.0
+    animation.autoreverses = true
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "shapeChangeAnimation")
+}
+
+func pathMotionAnimation(view: UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "position")
+    let path = UIBezierPath()
+    path.move(to: view.center)
+    path.addLine(to: CGPoint(x: view.center.x + 100, y: view.center.y + 100))
+    path.addLine(to: CGPoint(x: view.center.x - 100, y: view.center.y + 100))
+    path.addLine(to: view.center)
+    animation.path = path.cgPath
+    animation.duration = 2.0
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "pathMotionAnimation")
+}
+
+func noiseFlickerAnimation(view: UIView) {
+    let flickerAnimation = CABasicAnimation(keyPath: "opacity")
+    flickerAnimation.fromValue = 1.0
+    flickerAnimation.toValue = 0.5
+    flickerAnimation.duration = 0.1
+    flickerAnimation.autoreverses = true
+    flickerAnimation.repeatCount = .infinity
+    flickerAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
+    view.layer.add(flickerAnimation, forKey: "noiseFlickerAnimation")
+}
+
+
+
+
+
 
 
