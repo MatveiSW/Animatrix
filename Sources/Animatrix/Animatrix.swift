@@ -7,6 +7,7 @@ public enum Animation {
     case appearance
     case disappearance
     case shakeHorizontal
+    case shakeVertical
 }
 
 public struct Animatrix {
@@ -19,6 +20,8 @@ public struct Animatrix {
             disappearance(view: view, duration: duration)
         case .shakeHorizontal:
             shakeHorizontal(view: view, duration: duration)
+        case .shakeVertical:
+            shakeVertical(view: view, duration: duration)
         }
     }
 }
@@ -45,3 +48,13 @@ private func shakeHorizontal(view: UIView, duration: Double) {
       
       view.layer.add(animation, forKey: "shake")
   }
+
+private func shakeVertical(view: UIView, duration: Double) {
+      let animation = CAKeyframeAnimation(keyPath: "transform.translation.y")
+      animation.timingFunction = CAMediaTimingFunction(name: .linear)
+      animation.values = [-30, 30, -20, 20, -10, 10, -5, 5, -3, 3, 0]
+      animation.duration = 0.6
+      
+      view.layer.add(animation, forKey: "shake")
+  }
+
