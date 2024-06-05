@@ -9,22 +9,25 @@ public enum Animation {
     case shakeHorizontal
     case shakeVertical
     case pulse
+    case explode
 }
 
 public struct Animatrix {
-    public static func startAnimationIn(view: UIView, animation: Animation, duration: Double) {
+    public static func startAnimationIn(view: UIView, animation: Animation, duration: Double? = nil) {
         switch animation {
-            
+
         case .appearance:
-           appearance(view: view, duration: duration)
+            appearance(view: view, duration: duration ?? 2)
         case .disappearance:
-            disappearance(view: view, duration: duration)
+            disappearance(view: view, duration: duration ?? 2)
         case .shakeHorizontal:
-            shakeHorizontal(view: view, duration: duration)
+            shakeHorizontal(view: view, duration: duration ?? 2)
         case .shakeVertical:
-            shakeVertical(view: view, duration: duration)
+            shakeVertical(view: view, duration: duration ?? 2)
         case .pulse:
-            pulse(view: view, duration: duration)
+            pulse(view: view)
+        case .explode:
+            explode(view: view)
         }
     }
 }
@@ -61,9 +64,9 @@ private func shakeVertical(view: UIView, duration: Double) {
       view.layer.add(animation, forKey: "shake")
   }
 
-private func pulse(view: UIView, duration: Double) {
+private func pulse(view: UIView) {
         let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
-        pulseAnimation.duration = duration
+        pulseAnimation.duration = 1
         pulseAnimation.fromValue = 1.0
         pulseAnimation.toValue = 1.2
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
@@ -71,5 +74,15 @@ private func pulse(view: UIView, duration: Double) {
         pulseAnimation.repeatCount = Float.infinity
         
         view.layer.add(pulseAnimation, forKey: "pulse")
-    }
+ }
+
+private func explode(view: UIView) {
+       UIView.animate(withDuration: 0.2, animations: {
+           view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+           view.alpha = 0.0
+       }, completion: { _ in
+           view.transform = CGAffineTransform.identity
+           view.alpha = 1.0
+       })
+   }
 
