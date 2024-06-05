@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+/// Makes the view appear by fading in.
 func appearance(view: UIView, duration: Double) {
     view.alpha = 0
     UIView.animate(withDuration: duration) {
@@ -15,6 +15,7 @@ func appearance(view: UIView, duration: Double) {
     }
 }
 
+/// Makes the view disappear by fading out.
 func disappearance(view: UIView, duration: Double) {
     view.alpha = 1
     UIView.animate(withDuration: duration) {
@@ -22,6 +23,7 @@ func disappearance(view: UIView, duration: Double) {
     }
 }
 
+/// Makes the view shake in a specified direction.
 func shake(view: UIView, direction: String, duration: Double) {
     let animation = CAKeyframeAnimation(keyPath: "transform.translation.\(direction)")
     animation.timingFunction = CAMediaTimingFunction(name: .linear)
@@ -30,6 +32,7 @@ func shake(view: UIView, direction: String, duration: Double) {
     view.layer.add(animation, forKey: "shake")
 }
 
+/// Makes the view pulse.
 func pulse(view: UIView) {
     let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
     pulseAnimation.duration = 1
@@ -41,6 +44,7 @@ func pulse(view: UIView) {
     view.layer.add(pulseAnimation, forKey: "pulse")
 }
 
+/// Makes the view explode.
 func explode(view: UIView) {
     UIView.animate(withDuration: 0.2, animations: {
         view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -51,6 +55,7 @@ func explode(view: UIView) {
     })
 }
 
+/// A complex animation combining scale, rotation, and opacity changes.
 func complexAnimation(view: UIView) {
     let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
     scaleAnimation.fromValue = 1.0
@@ -77,6 +82,7 @@ func complexAnimation(view: UIView) {
     view.layer.add(opacityAnimation, forKey: "opacity")
 }
 
+/// A complex animation involving scale, rotation, opacity, and position changes.
 func advancedAnimation(view: UIView) {
     let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
     scaleAnimation.fromValue = 1.0
@@ -111,12 +117,14 @@ func advancedAnimation(view: UIView) {
     view.layer.add(groupAnimation, forKey: "advancedAnimation")
 }
 
+/// Makes the view blink.
 func blink(view: UIView) {
     UIView.animate(withDuration: 0.1, delay: 0, options: [.autoreverse, .repeat], animations: {
         view.alpha = 0
     }, completion: nil)
 }
 
+/// Makes the view vibrate.
 func vibrate(view: UIView) {
     let animation = CAKeyframeAnimation(keyPath: "position")
     animation.values = [
@@ -132,6 +140,7 @@ func vibrate(view: UIView) {
     view.layer.add(animation, forKey: "vibrate")
 }
 
+/// Makes the view move in a spiral path.
 func spiral(view: UIView) {
     let animation = CAKeyframeAnimation(keyPath: "position")
     let path = UIBezierPath()
@@ -145,6 +154,7 @@ func spiral(view: UIView) {
     view.layer.add(animation, forKey: "spiral")
 }
 
+/// Creates a flicker effect by changing the view's background color.
 func colorFlicker(view: UIView) {
     let flickerAnimation = CABasicAnimation(keyPath: "backgroundColor")
     flickerAnimation.fromValue = UIColor.white.cgColor
@@ -155,8 +165,9 @@ func colorFlicker(view: UIView) {
     view.layer.add(flickerAnimation, forKey: "colorFlicker")
 }
 
+/// Creates a plasma effect by rapidly changing the view's background color.
 func plasma(view: UIView) {
-    let colors: [UIColor] = [.red, .blue, .green, .purple, .orange] // Можете использовать любой набор цветов
+    let colors: [UIColor] = [.red, .blue, .green, .purple, .orange] // You can use any set of colors
     var index = 0
     
     Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
@@ -167,15 +178,17 @@ func plasma(view: UIView) {
     }
 }
 
+/// Adds a gradient effect to the view.
 func gradientEffect(view: UIView) {
     let gradientLayer = CAGradientLayer()
     gradientLayer.frame = view.bounds
-    gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor] // Можно использовать любые цвета
+    gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor] // You can use any colors
     gradientLayer.startPoint = CGPoint(x: 0, y: 0)
     gradientLayer.endPoint = CGPoint(x: 1, y: 1)
     view.layer.addSublayer(gradientLayer)
 }
 
+/// Makes the view scale up and down repeatedly.
 func scalingAnimation(view: UIView) {
     let animation = CABasicAnimation(keyPath: "transform.scale")
     animation.fromValue = 0.5
@@ -186,6 +199,7 @@ func scalingAnimation(view: UIView) {
     view.layer.add(animation, forKey: "scalingAnimation")
 }
 
+/// Makes the view move in a circular motion.
 func circleMotionAnimation(view: UIView) {
     let animation = CAKeyframeAnimation(keyPath: "position")
     let path = UIBezierPath(arcCenter: view.superview!.center, radius: 100, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
@@ -195,6 +209,7 @@ func circleMotionAnimation(view: UIView) {
     view.layer.add(animation, forKey: "circleMotionAnimation")
 }
 
+/// Creates a wave-like animation on the view.
 func waveAnimation(view: UIView) {
     let animation = CAKeyframeAnimation(keyPath: "transform.translation.y")
     animation.values = [0, -20, 0]
@@ -204,16 +219,18 @@ func waveAnimation(view: UIView) {
     view.layer.add(animation, forKey: "waveAnimation")
 }
 
+/// Changes the shape of the view.
 func shapeChangeAnimation(view: UIView) {
     let animation = CABasicAnimation(keyPath: "cornerRadius")
     animation.fromValue = view.layer.cornerRadius
-    animation.toValue = view.bounds.width / 2 // Пример: изменение на круглую форму
+    animation.toValue = view.bounds.width / 2 // Example: changing to a round shape
     animation.duration = 1.0
     animation.autoreverses = true
     animation.repeatCount = .infinity
     view.layer.add(animation, forKey: "shapeChangeAnimation")
 }
 
+/// Moves the view along a specified path.
 func pathMotionAnimation(view: UIView) {
     let animation = CAKeyframeAnimation(keyPath: "position")
     let path = UIBezierPath()
@@ -227,6 +244,7 @@ func pathMotionAnimation(view: UIView) {
     view.layer.add(animation, forKey: "pathMotionAnimation")
 }
 
+/// Creates a noise flicker effect on the view.
 func noiseFlickerAnimation(view: UIView) {
     let flickerAnimation = CABasicAnimation(keyPath: "opacity")
     flickerAnimation.fromValue = 1.0
@@ -237,10 +255,3 @@ func noiseFlickerAnimation(view: UIView) {
     flickerAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
     view.layer.add(flickerAnimation, forKey: "noiseFlickerAnimation")
 }
-
-
-
-
-
-
-
