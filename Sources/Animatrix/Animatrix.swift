@@ -4,7 +4,7 @@
 import Foundation
 
 public struct Animatrix {
-    static func helloWorld() {
+    public static func helloWorld() {
         print("HelloWorld")
     }
 }
