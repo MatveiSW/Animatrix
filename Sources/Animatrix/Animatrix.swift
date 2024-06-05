@@ -3,7 +3,7 @@
 
 import Foundation
 
-public enum Animation {
+public enum Animation: String {
     case slide
     
     var action: String {
