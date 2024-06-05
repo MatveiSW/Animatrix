@@ -40,7 +40,7 @@ private func disappearance(view: UIView, duration: Double) {
 private func shakeHorizontal(view: UIView, duration: Double) {
       let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
       animation.timingFunction = CAMediaTimingFunction(name: .linear)
-      animation.values = [-10, 10, -8, 8, -6, 6, -4, 4, -2, 2, 0]
+      animation.values = [-30, 30, -20, 20, -10, 10, -5, 5, -3, 3, 0]
       animation.duration = 0.6
       
       view.layer.add(animation, forKey: "shake")
