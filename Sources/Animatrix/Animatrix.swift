@@ -11,6 +11,7 @@ public enum Animation {
     case pulse
     case explode
     case complexAnimation
+    case advancedAnimation
 }
 
 public struct Animatrix {
@@ -31,6 +32,8 @@ public struct Animatrix {
             explode(view: view)
         case .complexAnimation:
             complexAnimation(view: view )
+        case .advancedAnimation:
+            advancedAnimation(view: view)
         }
     }
 }
@@ -119,3 +122,41 @@ private func complexAnimation(view: UIView) {
         view.layer.add(opacityAnimation, forKey: "opacity")
     }
 
+private func advancedAnimation(view: UIView) {
+    // Создание анимации масштаба
+    let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+    scaleAnimation.fromValue = 1.0
+    scaleAnimation.toValue = 2.0
+    scaleAnimation.duration = 0.5
+    scaleAnimation.autoreverses = true
+
+    // Создание анимации вращения
+    let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+    rotationAnimation.fromValue = 0
+    rotationAnimation.toValue = Double.pi * 4
+    rotationAnimation.duration = 1.0
+
+    // Создание анимации прозрачности
+    let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+    opacityAnimation.fromValue = 1.0
+    opacityAnimation.toValue = 0.0
+    opacityAnimation.duration = 1.0
+
+    // Создание анимации перемещения по кривой траектории
+    let positionAnimation = CAKeyframeAnimation(keyPath: "position")
+    let path = UIBezierPath()
+    path.move(to: view.center)
+    path.addCurve(to: CGPoint(x: view.center.x + 200, y: view.center.y + 200),
+                  controlPoint1: CGPoint(x: view.center.x + 100, y: view.center.y - 100),
+                  controlPoint2: CGPoint(x: view.center.x + 300, y: view.center.y + 100))
+    positionAnimation.path = path.cgPath
+    positionAnimation.duration = 1.0
+
+    // Группировка всех анимаций
+    let groupAnimation = CAAnimationGroup()
+    groupAnimation.animations = [scaleAnimation, rotationAnimation, opacityAnimation, positionAnimation]
+    groupAnimation.duration = 1.0
+    groupAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+    
+    view.layer.add(groupAnimation, forKey: "advancedAnimation")
+}
