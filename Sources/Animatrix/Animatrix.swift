@@ -5,19 +5,18 @@ import Foundation
 
 public enum Animation: String {
     case slide
-    
-    var action: String {
-        switch self {
-            
-        case .slide:
-            return "asdasd"
-        }
-    }
+    case print
     
 }
 
 public struct Animatrix {
     public static func thisPrint(text: Animation) {
-        print(text)
+        switch text {
+            
+        case .slide:
+            print("hello slide")
+        case .print:
+            print("hello print")
+        }
     }
 }
