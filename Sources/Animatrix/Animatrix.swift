@@ -3,8 +3,21 @@
 
 import Foundation
 
+public enum Animation {
+    case slide
+    
+    var action: String {
+        switch self {
+            
+        case .slide:
+            return "asdasd"
+        }
+    }
+    
+}
+
 public struct Animatrix {
-    public static func helloWorld() {
-        print("HelloWorld!!!")
+    public static func thisPrint(text: Animation) {
+        print("text")
     }
 }
