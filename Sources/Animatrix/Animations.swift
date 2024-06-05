@@ -111,3 +111,71 @@ func advancedAnimation(view: UIView) {
     view.layer.add(groupAnimation, forKey: "advancedAnimation")
 }
 
+func scatter(view: UIView) {
+    let emitter = CAEmitterLayer()
+    emitter.emitterPosition = view.center
+    emitter.emitterShape = .circle
+    emitter.emitterSize = CGSize(width: 100, height: 100)
+
+    let cell = CAEmitterCell()
+    cell.birthRate = 100
+    cell.lifetime = 3.0
+    cell.velocity = 100
+    cell.velocityRange = 50
+    cell.emissionLongitude = CGFloat.pi * 2
+    cell.emissionRange = CGFloat.pi / 4
+    cell.spin = 2
+    cell.spinRange = 5
+    cell.scale = 0.5
+    cell.scaleRange = 0.5
+    cell.contents = UIImage(named: "particle")?.cgImage // Замените "particle" на имя вашего изображения
+
+    emitter.emitterCells = [cell]
+    view.layer.addSublayer(emitter)
+}
+
+func blink(view: UIView) {
+    UIView.animate(withDuration: 0.1, delay: 0, options: [.autoreverse, .repeat], animations: {
+        view.alpha = 0
+    }, completion: nil)
+}
+
+func vibrate(view: UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "position")
+    animation.values = [
+        CGPoint(x: view.center.x, y: view.center.y),
+        CGPoint(x: view.center.x + 5, y: view.center.y + 5),
+        CGPoint(x: view.center.x - 5, y: view.center.y - 5),
+        CGPoint(x: view.center.x + 5, y: view.center.y + 5),
+        CGPoint(x: view.center.x, y: view.center.y)
+    ]
+    animation.keyTimes = [0, 0.1, 0.3, 0.6, 1]
+    animation.duration = 0.5
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "vibrate")
+}
+
+func spiral(view: UIView) {
+    let animation = CAKeyframeAnimation(keyPath: "position")
+    let path = UIBezierPath()
+    path.move(to: view.center)
+    path.addCurve(to: CGPoint(x: view.center.x + 100, y: view.center.y + 100),
+                  controlPoint1: CGPoint(x: view.center.x, y: view.center.y - 100),
+                  controlPoint2: CGPoint(x: view.center.x + 200, y: view.center.y + 100))
+    animation.path = path.cgPath
+    animation.duration = 2.0
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "spiral")
+}
+
+func colorFlicker(view: UIView) {
+    let flickerAnimation = CABasicAnimation(keyPath: "backgroundColor")
+    flickerAnimation.fromValue = UIColor.white.cgColor
+    flickerAnimation.toValue = UIColor.red.cgColor
+    flickerAnimation.duration = 0.1
+    flickerAnimation.autoreverses = true
+    flickerAnimation.repeatCount = .infinity
+    view.layer.add(flickerAnimation, forKey: "colorFlicker")
+}
+
+

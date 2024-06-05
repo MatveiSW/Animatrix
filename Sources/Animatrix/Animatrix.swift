@@ -4,7 +4,6 @@
 import UIKit
 
 public struct Animatrix {
-
     public static func startAnimationIn(view: UIView, animation: Animation, duration: Double? = nil) {
         switch animation {
         case .appearance:
@@ -23,6 +22,17 @@ public struct Animatrix {
             complexAnimation(view: view)
         case .advancedAnimation:
             advancedAnimation(view: view)
+        case .scatter: // Добавленная анимация
+            scatter(view: view)
+        case .blink: // Добавленная анимация
+            blink(view: view)
+        case .vibrate: // Добавленная анимация
+            vibrate(view: view)
+        case .spiral: // Добавленная анимация
+            spiral(view: view)
+        case .colorFlicker: // Добавленная анимация
+            colorFlicker(view: view)
         }
     }
 }
+
