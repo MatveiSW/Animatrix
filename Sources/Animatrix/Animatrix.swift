@@ -18,6 +18,6 @@ public enum Animation {
 
 public struct Animatrix {
     public static func thisPrint(text: Animation) {
-        print("text")
+        print(text)
     }
 }
