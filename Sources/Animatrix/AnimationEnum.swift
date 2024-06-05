@@ -16,9 +16,11 @@ public enum Animation {
     case explode
     case complexAnimation
     case advancedAnimation
-    case scatter
     case blink
     case vibrate
     case spiral
     case colorFlicker
+    case plasma
+    case gradientEffect
+    case scalingAnimation
 }

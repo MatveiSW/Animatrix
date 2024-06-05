@@ -22,16 +22,20 @@ public struct Animatrix {
             complexAnimation(view: view)
         case .advancedAnimation:
             advancedAnimation(view: view)
-        case .scatter: // Добавленная анимация
-            scatter(view: view)
-        case .blink: // Добавленная анимация
+        case .blink:
             blink(view: view)
-        case .vibrate: // Добавленная анимация
+        case .vibrate:
             vibrate(view: view)
-        case .spiral: // Добавленная анимация
+        case .spiral:
             spiral(view: view)
-        case .colorFlicker: // Добавленная анимация
+        case .colorFlicker: 
             colorFlicker(view: view)
+        case .plasma:
+            plasma(view: view)
+        case .gradientEffect:
+            gradientEffect(view: view)
+        case .scalingAnimation:
+            scalingAnimation(view: view)
         }
     }
 }

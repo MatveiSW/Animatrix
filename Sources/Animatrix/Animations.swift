@@ -111,29 +111,6 @@ func advancedAnimation(view: UIView) {
     view.layer.add(groupAnimation, forKey: "advancedAnimation")
 }
 
-func scatter(view: UIView) {
-    let emitter = CAEmitterLayer()
-    emitter.emitterPosition = view.center
-    emitter.emitterShape = .circle
-    emitter.emitterSize = CGSize(width: 100, height: 100)
-
-    let cell = CAEmitterCell()
-    cell.birthRate = 100
-    cell.lifetime = 3.0
-    cell.velocity = 100
-    cell.velocityRange = 50
-    cell.emissionLongitude = CGFloat.pi * 2
-    cell.emissionRange = CGFloat.pi / 4
-    cell.spin = 2
-    cell.spinRange = 5
-    cell.scale = 0.5
-    cell.scaleRange = 0.5
-    cell.contents = UIImage(named: "particle")?.cgImage // Замените "particle" на имя вашего изображения
-
-    emitter.emitterCells = [cell]
-    view.layer.addSublayer(emitter)
-}
-
 func blink(view: UIView) {
     UIView.animate(withDuration: 0.1, delay: 0, options: [.autoreverse, .repeat], animations: {
         view.alpha = 0
@@ -177,5 +154,37 @@ func colorFlicker(view: UIView) {
     flickerAnimation.repeatCount = .infinity
     view.layer.add(flickerAnimation, forKey: "colorFlicker")
 }
+
+func plasma(view: UIView) {
+    let colors: [UIColor] = [.red, .blue, .green, .purple, .orange] // Можете использовать любой набор цветов
+    var index = 0
+    
+    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+        UIView.transition(with: view, duration: 0.1, options: .transitionCrossDissolve, animations: {
+            view.backgroundColor = colors[index]
+        }, completion: nil)
+        index = (index + 1) % colors.count
+    }
+}
+
+func gradientEffect(view: UIView) {
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame = view.bounds
+    gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor] // Можно использовать любые цвета
+    gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+    gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+    view.layer.addSublayer(gradientLayer)
+}
+
+func scalingAnimation(view: UIView) {
+    let animation = CABasicAnimation(keyPath: "transform.scale")
+    animation.fromValue = 0.5
+    animation.toValue = 1.0
+    animation.duration = 0.5
+    animation.autoreverses = true
+    animation.repeatCount = .infinity
+    view.layer.add(animation, forKey: "scalingAnimation")
+}
+
 
 
