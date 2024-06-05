@@ -8,6 +8,7 @@ public enum Animation {
     case disappearance
     case shakeHorizontal
     case shakeVertical
+    case pulse
 }
 
 public struct Animatrix {
@@ -22,6 +23,8 @@ public struct Animatrix {
             shakeHorizontal(view: view, duration: duration)
         case .shakeVertical:
             shakeVertical(view: view, duration: duration)
+        case .pulse:
+            pulse(view: view, duration: duration)
         }
     }
 }
@@ -57,4 +60,16 @@ private func shakeVertical(view: UIView, duration: Double) {
       
       view.layer.add(animation, forKey: "shake")
   }
+
+private func pulse(view: UIView, duration: Double) {
+        let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
+        pulseAnimation.duration = duration
+        pulseAnimation.fromValue = 1.0
+        pulseAnimation.toValue = 1.2
+        pulseAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        pulseAnimation.autoreverses = true
+        pulseAnimation.repeatCount = Float.infinity
+        
+        view.layer.add(pulseAnimation, forKey: "pulse")
+    }
 
