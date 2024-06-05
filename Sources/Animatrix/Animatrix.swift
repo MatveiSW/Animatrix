@@ -9,18 +9,18 @@ public enum Animation: String {
 }
 
 public struct Animatrix {
-    public static func thisPrint(view: UIView, animation: Animation) {
+    public static func startAnimationIn(view: UIView, animation: Animation, duration: Double) {
         switch animation {
             
         case .appearance:
-           appearance(view: view)
+           appearance(view: view, duration: duration)
         }
     }
 }
 
-private func appearance(view: UIView) {
+private func appearance(view: UIView, duration: Double) {
     view.alpha = 0
-    UIView.animate(withDuration: 2) {
+    UIView.animate(withDuration: duration) {
         view.alpha = 1
     }
 }
