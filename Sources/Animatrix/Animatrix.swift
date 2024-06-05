@@ -5,6 +5,6 @@ import Foundation
 
 public struct Animatrix {
     public static func helloWorld() {
-        print("HelloWorld")
+        print("HelloWorld!!!")
     }
 }
