@@ -10,6 +10,7 @@ public enum Animation {
     case shakeVertical
     case pulse
     case explode
+    case complexAnimation
 }
 
 public struct Animatrix {
@@ -28,6 +29,8 @@ public struct Animatrix {
             pulse(view: view)
         case .explode:
             explode(view: view)
+        case .complexAnimation:
+            complexAnimation(view: view )
         }
     }
 }
@@ -84,5 +87,35 @@ private func explode(view: UIView) {
            view.transform = CGAffineTransform.identity
            view.alpha = 1.0
        })
-   }
+ }
+
+private func complexAnimation(view: UIView) {
+        // Создание анимации масштаба
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.fromValue = 1.0
+        scaleAnimation.toValue = 1.5
+        scaleAnimation.duration = 1.0
+        scaleAnimation.autoreverses = true
+        scaleAnimation.repeatCount = Float.infinity
+        
+        // Создание анимации вращения
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotationAnimation.fromValue = 0
+        rotationAnimation.toValue = Double.pi * 2
+        rotationAnimation.duration = 2.0
+        rotationAnimation.repeatCount = Float.infinity
+
+        // Создание анимации прозрачности
+        let opacityAnimation = CABasicAnimation(keyPath: "opacity")
+        opacityAnimation.fromValue = 1.0
+        opacityAnimation.toValue = 0.5
+        opacityAnimation.duration = 1.0
+        opacityAnimation.autoreverses = true
+        opacityAnimation.repeatCount = Float.infinity
+        
+        // Добавление всех анимаций к слою testView
+        view.layer.add(scaleAnimation, forKey: "scale")
+        view.layer.add(rotationAnimation, forKey: "rotation")
+        view.layer.add(opacityAnimation, forKey: "opacity")
+    }
 
